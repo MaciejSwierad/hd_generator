@@ -12,10 +12,10 @@ class FlightReport:
     def __str__(self) -> str:
         string_start_of_flight = ""
         try:
-            string_start_of_flight = self.start_of_flight.strftime("%Y-%m-%d")
+            string_start_of_flight = self.start_of_flight.strftime('%Y-%m-%d,%H:%M:%S')
         except Exception:
-            string_start_of_flight = self.start_of_flight[0].strftime("%Y-%m-%d")
-        string_landing_date = self.landing_date.strftime("%Y-%m-%d")
+            string_start_of_flight = self.start_of_flight[0].strftime('%Y-%m-%d,%H:%M:%S')
+        string_landing_date = self.landing_date.strftime('%Y-%m-%d,%H:%M:%S')
 
-        return f"{string_start_of_flight} {string_landing_date} {self.passengers_amount} " \
-               f"{self.delay} {self.airlines} {self.airplane_id} {self.flight_id}"
+        return f"{string_start_of_flight},{string_landing_date},{self.passengers_amount}," \
+               f"{self.delay},{self.airlines},{self.airplane_id},{self.flight_id};"

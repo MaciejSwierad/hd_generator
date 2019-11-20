@@ -28,7 +28,8 @@ def generate_ticket(ticket_id: int, flight_id: int, airplane_id: int, flight_dat
         airplane_id,
         generate_name(),
         generate_surname(),
-        generate_document_type()
+        generate_document_type(),
+        generate_sex()
     )
 
 
@@ -61,3 +62,10 @@ def generate_surname():
 
 def generate_document_type():
     return random.choice(DOCUMENT_TYPES)
+
+
+def generate_sex():
+    a = random.randint(0, 1)
+    if a == 0:
+        return "MEZCZYZNA"
+    return "KOBIETA"
