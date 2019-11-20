@@ -63,9 +63,9 @@ def generate_purchased_ticket(global_ticket_id, flight, flight_ticket):
     flight_ticket.ticket_id = ticket.db_id
     #print("TICKET: " + ticket.__str__())
     current_file.write(
-        "INSERT INTO BILET (id, cena, data_urodzenia, data_wylotu, data_zakupu, id_dokumentu, identyfikator_biletu,"
+        "INSERT INTO BILET (cena, data_urodzenia, data_wylotu, data_zakupu, id_dokumentu, identyfikator_biletu,"
         "identyfikator_lotu, identyfikator_samolotu, imie, nazwisko, rodzaj_dokumentu, plec)"
-        " VALUES ({}, {}, '{}', '{}', '{}', '{}', {}, {}, {}, '{}', '{}', '{}', '{}')\n".format(ticket.db_id, ticket.price, ticket.date_of_birth,
+        " VALUES ({}, '{}', '{}', '{}', '{}', {}, {}, {}, '{}', '{}', '{}', '{}')\n".format(ticket.price, ticket.date_of_birth,
                                                                             ticket.date_of_flight[0], ticket.date_of_purchase,
                                                                             ticket.document_id, ticket.ticket_id, ticket.flight_id,
                                                                             ticket.airplane_id, ticket.name, ticket.surname, ticket.document_type, ticket.plec))
@@ -81,8 +81,8 @@ def generate_baggages(baggage_id, global_ticket_id):
             baggage_id += 1
             #print("BAGGAGE: " + new_baggage.__str__())
             current_file.write(
-                "INSERT INTO BAGAZ (id, masa, rodzaj, fk_bilet)"
-                """ VALUES ({}, {}, '{}', {})\n""".format(new_baggage.db_id, new_baggage.weight,
+                "INSERT INTO BAGAZ (masa, rodzaj, fk_bilet)"
+                """ VALUES ({}, '{}', {})\n""".format(new_baggage.weight,
                                                     new_baggage.type, new_baggage.ticket_id))
     return baggages
 
@@ -102,9 +102,10 @@ def generate_scans(global_scan_id, has_baggage, ticket_id, flight_date):
             scans.append(scan)
             global_scan_id += 1
             #print("SCAN: " + scan.__str__())
-            current_file.write(
-                "INSERT INTO SKAN (id, data, nazwa_czujnika, fk_bilet)"
-                """ VALUES ({}, '{}', '{}', {})\n""".format(scan.id, scan.scan_date, scan.scanner_name, scan.ticket_id))
+            if scan.scan_date is not None:
+                current_file.write(
+                    "INSERT INTO SKAN (data, nazwa_czujnika, fk_bilet)"
+                    """ VALUES ('{}', '{}', {})\n""".format(scan.scan_date, scan.scanner_name, scan.ticket_id))
 
     if scan is None:
         scan = generate_scan(
@@ -117,9 +118,10 @@ def generate_scans(global_scan_id, has_baggage, ticket_id, flight_date):
     scans.append(scan)
     global_scan_id += 1
     #print("SCAN: " + scan.__str__())
-    current_file.write(
-        "INSERT INTO SKAN (id, data, nazwa_czujnika, fk_bilet)"
-        " VALUES ({}, '{}', '{}', {})\n".format(scan.id, scan.scan_date, scan.scanner_name, scan.ticket_id))
+    if scan.scan_date is not None:
+        current_file.write(
+            "INSERT INTO SKAN (data, nazwa_czujnika, fk_bilet)"
+            " VALUES ('{}', '{}', {})\n".format(scan.scan_date, scan.scanner_name, scan.ticket_id))
 
     scan = generate_scan(
         global_scan_id, ScanStage.AIRPLANE, ticket_id, scan.scan_date, flight_date
@@ -128,9 +130,11 @@ def generate_scans(global_scan_id, has_baggage, ticket_id, flight_date):
     scans.append(scan)
     global_scan_id += 1
     #print("SCAN: " + scan.__str__())
-    current_file.write(
-        "INSERT INTO SKAN (id, data, nazwa_czujnika, fk_bilet)"
-        " VALUES ({}, '{}', '{}', {})\n".format(scan.id, scan.scan_date, scan.scanner_name, scan.ticket_id))
+
+    if scan.scan_date is not None:
+        current_file.write(
+            "INSERT INTO SKAN (data, nazwa_czujnika, fk_bilet)"
+            " VALUES ('{}', '{}', {})\n".format(scan.scan_date, scan.scanner_name, scan.ticket_id))
 
     return scans
 
@@ -158,8 +162,8 @@ def generation_process():
         flight = generate_flight(i)
         #print('FLIGHT: ' + flight.__str__())
         current_file.write(
-            "INSERT INTO LOT (id, data_przylotu, data_wylotu, identyfikator_lotu, identyfikator_samolotu, linia_lotnicza, miejsce_przylotu, miejsce_wylotu)"
-            " VALUES ({}, '{}', '{}', {}, {}, '{}', '{}', '{}')\n".format(flight.db_id, flight.flight_end_date, flight.flight_start_date[0],
+            "INSERT INTO LOT (data_przylotu, data_wylotu, identyfikator_lotu, identyfikator_samolotu, linia_lotnicza, miejsce_przylotu, miejsce_wylotu)"
+            " VALUES ('{}', '{}', {}, {}, '{}', '{}', '{}')\n".format(flight.flight_end_date, flight.flight_start_date[0],
                                                                 flight.flight_id, flight.airplane_id, flight.airline,
                                                                 flight.to_place, flight.from_place))
         number_of_sits = random.randint(MIN_AMOUNT_OF_SITS, MAX_AMOUNT_OF_SITS)
@@ -180,9 +184,9 @@ def generation_process():
                 global_scan_id += scans.__len__()
                 passengers_amount += 1
             #print("TICKET FLIGHT: " + flight_ticket.__str__())
-            current_file.write("INSERT INTO BILET_LOT (id, miejsce, rzad, fk_bilet, fk_lot_linia_lotnicza, fk_lot_identyfikator_lotu)"
-                    " VALUES ({}, {}, {}, {}, '{}', {})\n".format(flight_ticket.db_id, flight_ticket.place_number, flight_ticket.row_number, flight_ticket.ticket_id, flight_ticket.airlines, flight_ticket.flight_id))
-            global_ticket_id += 1
+            current_file.write("INSERT INTO BILET_LOT (miejsce, rzad, fk_bilet, fk_lot_linia_lotnicza, fk_lot_identyfikator_lotu)"
+                    " VALUES ({}, {}, {}, '{}', {})\n".format(flight_ticket.place_number, flight_ticket.row_number, flight_ticket.ticket_id, flight_ticket.airlines, flight_ticket.flight_id))
+
             if i < NUMBER_OF_FLIGHTS:
                 current_file = f
 
@@ -190,9 +194,9 @@ def generation_process():
                 last_file = current_file
                 current_file = f2
                 current_file.write(
-                    "INSERT INTO BILET (id, cena, data_urodzenia, data_wylotu, data_zakupu, id_dokumentu, identyfikator_biletu,"
+                    "INSERT INTO BILET (cena, data_urodzenia, data_wylotu, data_zakupu, id_dokumentu, identyfikator_biletu,"
                     "identyfikator_lotu, identyfikator_samolotu, imie, nazwisko, rodzaj_dokumentu)"
-                    " VALUES ({}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {})\n".format(global_ticket_id, ticket.price,
+                    " VALUES ({}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {})\n".format(ticket.price,
                                                                                         ticket.date_of_birth,
                                                                                         ticket.date_of_flight[0],
                                                                                         ticket.date_of_purchase,
@@ -203,29 +207,32 @@ def generation_process():
                                                                                         names.get_last_name(),
                                                                                         ticket.document_type))
                 current_file.write(
-                    "INSERT INTO BILET_LOT (id, miejsce, rzad, bilet_id, fk_lot_linia_lotnicza, fk_lot_identyfikator_biletu)"
-                    " VALUES ({}, {}, {}, {}, {}, {})\n".format(global_ticket_id, flight_ticket.place_number,
+                    "INSERT INTO BILET_LOT (miejsce, rzad, bilet_id, fk_lot_linia_lotnicza, fk_lot_identyfikator_biletu)"
+                    " VALUES ({}, {}, {}, {}, {})\n".format(flight_ticket.place_number,
                                                                 flight_ticket.row_number, global_ticket_id,
                                                                 global_ticket_id, flight_ticket.airlines))
-                current_file.write(
-                    "INSERT INTO SKAN (id, data, nazwa_czujnika, fk_bilet)"
-                    " VALUES ({}, '{}', '{}', {})\n".format(global_scan_id, scans[0].scan_date, scans[0].scanner_name, global_ticket_id))
-                global_scan_id += 1
-                current_file.write(
-                    "INSERT INTO SKAN (id, data, nazwa_czujnika, fk_bilet)"
-                    " VALUES ({}, '{}', '{}', {})\n".format(global_scan_id, scans[1].scan_date, scans[1].scanner_name,
-                                                        global_ticket_id))
+                if scans[0].scan_date is not None:
+                    current_file.write(
+                        "INSERT INTO SKAN (data, nazwa_czujnika, fk_bilet)"
+                        " VALUES ('{}', '{}', {})\n".format(scans[0].scan_date, scans[0].scanner_name, global_ticket_id))
+                    global_scan_id += 1
+                if scans[1].scan_date is not None:
+                    current_file.write(
+                        "INSERT INTO SKAN (data, nazwa_czujnika, fk_bilet)"
+                        " VALUES ('{}', '{}', {})\n".format(scans[1].scan_date, scans[1].scanner_name,
+                                                            global_ticket_id))
 
                 if baggage.__len__():
                     current_file.write(
-                        "INSERT INTO BAGAZ (id, masa, rodzaj, fk_bilet)"
-                        " VALUES ({}, {}, {}, {})\n".format(global_baggage_id, baggage[0].weight,
+                        "INSERT INTO BAGAZ (masa, rodzaj, fk_bilet)"
+                        " VALUES ({}, {}, {})\n".format(baggage[0].weight,
                                                             baggage[0].type, global_ticket_id))
                     global_baggage_id += 1
                 global_scan_id += 1
                 global_ticket_id += 1
                 current_file = last_file
-
+            #global_ticket_id += 1
+            #todo
         report = generate_flight_report(flight.flight_start_date, (int)(
             (flight.flight_end_date - flight.flight_start_date[0]).seconds / 60), passengers_amount,
                                         flight.airline, flight.airplane_id, flight.flight_id)
