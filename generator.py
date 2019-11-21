@@ -162,10 +162,10 @@ def generation_process():
         flight = generate_flight(i)
         #print('FLIGHT: ' + flight.__str__())
         current_file.write(
-            "INSERT INTO LOT (data_przylotu, data_wylotu, identyfikator_lotu, identyfikator_samolotu, linia_lotnicza, miejsce_przylotu, miejsce_wylotu)"
-            " VALUES ('{}', '{}', {}, {}, '{}', '{}', '{}')\n".format(flight.flight_end_date, flight.flight_start_date[0],
+            "INSERT INTO LOT (data_przylotu, data_wylotu, identyfikator_lotu, identyfikator_samolotu, linia_lotnicza, miejsce_przylotu, miejsce_wylotu, oddzial, liczba_miejsc)"
+            " VALUES ('{}', '{}', {}, {}, '{}', '{}', '{}', '{}', {})\n".format(flight.flight_end_date, flight.flight_start_date[0],
                                                                 flight.flight_id, flight.airplane_id, flight.airline,
-                                                                flight.to_place, flight.from_place))
+                                                                flight.to_place, flight.from_place, flight.department, flight.number_of_places))
         number_of_sits = random.randint(MIN_AMOUNT_OF_SITS, MAX_AMOUNT_OF_SITS)
         prev_sit = None
         passengers_amount = 0

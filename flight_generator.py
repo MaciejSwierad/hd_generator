@@ -1,5 +1,6 @@
 import datetime
 import random
+import string
 
 from flight import Flight
 from utils import random_date
@@ -20,7 +21,11 @@ def generate_flight(flight_id: int):
         generate_airplane_id(),
         generate_airline(),
         generate_place(),
-        generate_place()
+        generate_place(),
+        generate_department(),
+        generate_number_of_places()
+
+
     )
 
 
@@ -50,3 +55,14 @@ def generate_place():
         ["Londyn", "Turku", "Dubaj", "Belfast", "Berlin", "Malta", "Santorini", "Sycylia", "Dublin",
          "Kolonia", "Ejlat", "Edynburg", "Walencja", "Marsylia", "Bangkok", "Phuket"]
     )
+
+
+def generate_department():
+    """Generate a random string of fixed length """
+    stringLength = 5
+    letters = string.ascii_lowercase
+    return ''.join(random.choice(letters) for i in range(stringLength))
+
+
+def generate_number_of_places():
+    return random.randint(60, 220)

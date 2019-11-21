@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4bff483b-2668-4bbb-b634-1a63baf6d05c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/dane.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dane.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/danet2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/danet2.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/generator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/raport.csv" beforeDir="false" afterPath="$PROJECT_DIR$/raport.csv" afterDir="false" />
-    </list>
+    <list default="true" id="4bff483b-2668-4bbb-b634-1a63baf6d05c" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,8 +27,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/generator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="146">
-              <caret line="106" column="37" selection-start-line="106" selection-start-column="21" selection-end-line="106" selection-end-column="37" />
+            <state relative-caret-position="293">
+              <caret line="113" column="9" lean-forward="true" selection-start-line="113" selection-start-column="9" selection-end-line="113" selection-end-column="9" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -159,7 +154,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="952" />
+    <option name="x" value="-8" />
     <option name="width" value="977" />
     <option name="height" value="1038" />
   </component>
@@ -254,16 +249,15 @@
       <workItem from="1574021673321" duration="600000" />
       <workItem from="1574192621224" duration="234000" />
       <workItem from="1574192928532" duration="1834000" />
-      <workItem from="1574273828981" duration="4726000" />
+      <workItem from="1574273828981" duration="5409000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26629000" />
+    <option name="totallyTimeSpent" value="27312000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
+    <frame x="762" y="0" width="781" height="830" extended-state="0" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.17761394" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -272,7 +266,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.22206506" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.39886847" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.40343347" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -280,7 +274,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.3281471" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.32761088" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -379,8 +373,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/generator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="106" column="37" selection-start-line="106" selection-start-column="21" selection-end-line="106" selection-end-column="37" />
+        <state relative-caret-position="293">
+          <caret line="113" column="9" lean-forward="true" selection-start-line="113" selection-start-column="9" selection-end-line="113" selection-end-column="9" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>

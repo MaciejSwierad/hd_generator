@@ -1,7 +1,7 @@
 class Flight:
     def __init__(self, db_id, flight_start_date,
                  flight_end_date, flight_id, airplane_id,
-                 airline, from_place, to_place):
+                 airline, from_place, to_place, department, num_of_places):
         self.db_id = db_id
         self.flight_start_date = flight_start_date
         self.flight_end_date = flight_end_date
@@ -10,6 +10,8 @@ class Flight:
         self.airline = airline
         self.from_place = from_place
         self.to_place = to_place
+        self.department = department
+        self.number_of_places = num_of_places
 
     def __str__(self) -> str:
         string_flight_start_date = self.flight_start_date[0].strftime("%Y-%m-%d %H:%M:%S")
